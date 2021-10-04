@@ -1,0 +1,27 @@
+@charset "UTF-8";
+ul,li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+body{border : 1px solid gray;}
+p{background-color: pink;}
+img{width:400px; height:400px;}
+
+#menu{
+	overflow:auto;
+	background-color: #ddd;
+}
+#menu>li{
+	float:left;
+	width:200px;
+	height:40px;
+	line-height:40px;
+	
+	text-align: center;
+}
+#bottom{
+	height:40px;
+	background-color: lightblue;
+}
