@@ -1,0 +1,63 @@
+package com.bitcamp.leaf;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//FileName: GetDataKr.java
+//Get방식 전성된 Client Form Data 처리
+public class GetDataKr extends HttpServlet {
+	//1.Client Get 방식으로 Request :: doGet() method O/R
+	//2.service() O/R가능
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws
+	SecurityException,IOException{
+		//아래의 두 실행문은 servlet 에서 client로 Html 전송시 필수 코딩
+		res.setContentType("text/html;charset=EUC_KR");
+		PrintWriter out=res.getWriter();
+		
+		//client form data(QueryString:: name=value)처리 (API확인)
+		String clientName= req.getParameter("name");
+		String clientAddr= req.getParameter("addr");
+		
+		//16진수 인코딩된 client form data 한글 디코딩
+		String clientNameKo = this.convertKo(clientName);
+		String clinetAddrKo= convertKo(clientAddr);
+		
+		//client form data 출력(출력은??)
+		System.out.println(clientNameKo+":"+clinetAddrKo);
+		
+		out.println("<html>");
+		out.println("<head><title>GetDataKr.java</title></head>");
+		out.println("<body>");
+		
+		out.println("<h2>Get Test Kr</h2>");
+		out.println("<li>이름 :"+clientNameKo);
+		out.println("<li>주소 :"+clinetAddrKo);
+		
+		out.println("<p><p><a herf='/edu/getDataKr.html'>뒤로</a>");
+		
+		out.println("</body>");
+		out.println("</html>");
+		
+	}
+	//Method
+	private String convertKo(String paramValue) {
+		String convertParamValue=null;
+		try {
+			//==>API를 확인
+			byte[]b=paramValue.getBytes("8859_1");
+			convertParamValue= new String(b,"EUC_KR");
+		}catch(UnsupportedEncodingException uee){
+			System.out.println("한글 변환중 Exception 발생");
+			uee.printStackTrace();
+			
+		}
+		return convertParamValue;
+	}
+
+} //end of class

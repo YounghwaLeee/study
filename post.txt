@@ -1,0 +1,46 @@
+package com.bitcamp.leaf;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class PostData {
+
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws
+	SecurityException,IOException{
+		//req.setCharacterEncoding ("~~")(API확인)
+		//16진수 인코딩된 client form data 한글 디코딩
+		req.setCharacterEncoding("EUC_KR");
+
+		// 아래의 두 실해문은 servlet 에서 client로 html을 전송시 필수 코딩
+		res.setContentType("text/html;charset=EUC_KR");
+		PrintWriter out=res.getWriter();
+		
+		//client form data(QueryString::name=value)처리 (API)확인
+		String clientName =req.getParameter("name");
+		String clientAddr =req.getParameter("addr");
+		
+		//client form data 출력(출력은??)
+		System.out.println(clientName+":"+clientAddr);
+		
+		out.println("<html>");
+		out.println("<head><title>PostData.java</title></head>");
+		out.println("<body>");
+		
+		out.println("<h2>Post Test</h2>");
+		out.println("<li>이름 :"+clientName);
+		out.println("<li>주소 :"+clientAddr);
+		
+		out.println("<p><p><a herf='/edu/postData.html'>뒤로</a>");
+		
+		out.println("</body>");
+		out.println("</html>");
+		
+		
+		
+		
+	}//end of class
+	
+}
