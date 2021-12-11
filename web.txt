@@ -1,0 +1,25 @@
+<servlet>
+	<servlet-name>LoginBeanInitParam</servlet-name>
+	<servlet-class>jw04.LoginBeanInitParam</servlet-class>
+	<init-param>
+		<param-name>jdbcDriver</param-name>
+		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+	</init-param>
+	<init-param>
+		<param-name>jdbcURL</param-name>
+		<param-value>jdbc:oracle:thin:@127.0.0.1:1521:xe</param-value>
+	</init-param>
+	<init-param>
+		<param-name>jdbcUser</param-name>
+		<param-value>scott</param-value>
+	</init-param>
+	<init-param>
+		<param-name>jdbcPasswd</param-name>
+		<param-value>tiger</param-value>
+	</init-param>		
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>LoginBeanInitParam</servlet-name>
+	<url-pattem>/LoginBeanInitParam</url-pattem>
+</servlet-mapping>
